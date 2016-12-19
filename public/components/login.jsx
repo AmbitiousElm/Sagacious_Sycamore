@@ -6,7 +6,7 @@ class Login extends React.Component {
       username: null,
       password: null
     }
-    
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -47,15 +47,20 @@ class Login extends React.Component {
   render() {
     return (
       <div className='signin-box container'>
+        <div className="row">
         <form className='form-signin' onSubmit={this.handleSubmit}>
           <h2 className='form-signin-header'>HR50 Sign In</h2>
-          <label><input onChange={this.handleUserChange} type='text' id='username' className='form-control' placeholder='Enter username'></input></label>
-          <label><input onChange={this.handlePasswordChange} type='password' id='password' className='form-control' placeholder='Enter password'></input></label>
-
-          <label><input type='checkbox' value='remember-me' /> Remember Me </label>
+          <div class="form-group">
+            <input onChange={this.handleUserChange} type='text' class="form-control" id='username' className='form-control' placeholder='Enter username' />
+          </div>
+          <div class="form-group">
+            <input onChange={this.handlePasswordChange} type='password' class="form-control" id='password' className='form-control' placeholder='Enter password' />
+          </div>
+          <input type='checkbox' value='remember-me' /> <label> Remember Me </label>
           <button className='btn btn-large btn-primary btn-block' type='submit'>Submit</button>
         </form>
         <Link to='signup'>New User? Click here</Link>
+        </div>
       </div>
     )
   }
