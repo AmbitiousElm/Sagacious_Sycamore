@@ -99,7 +99,7 @@ class App extends React.Component {
       data: {user: this.state.user}
     })
     .success(function(data) {
-      console
+      // console
        that.setState({logs: data});
     });
   }
@@ -143,7 +143,7 @@ class App extends React.Component {
       data: {name: this.state.newPetName, user: this.state.user}
     })
     .success(function() {
-      console.log('New pet created!');
+      // console.log('New pet created!');
       that.getCurrent();
     })
   }
@@ -207,7 +207,7 @@ class App extends React.Component {
   }
   // method to call when submitting answers
   submitAnswer() {
-    console.log('Answer submitted', data.target.value);
+    // console.log('Answer submitted', data.target.value);
     // var answer = this.pickAnswer();
     var that = this;
     var option = {
@@ -215,7 +215,7 @@ class App extends React.Component {
       answer: this.state.answer,
       user: this.state.user
     }
-    console.log('option', option);
+    // console.log('option', option);
     $.ajax({
       method: 'POST',
       url: '/api/answer',
@@ -225,7 +225,7 @@ class App extends React.Component {
         if (data.correct) {
           that.setStatus('coding');
         }
-        console.log('Successfully posted');
+        // console.log('Successfully posted');
       }
     });
     this.toggleModal();
@@ -237,7 +237,7 @@ class App extends React.Component {
     this.setState({
       answer: e.target.value
     });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   }
   // queues the next question
   getQuestion() {
@@ -259,7 +259,7 @@ class App extends React.Component {
   }
   // react-bootstrap toggle modal for challenge question
   toggleModal() {
-    console.log('toggle called');
+    // console.log('toggle called');
     this.getQuestion();
     if (this.state.question) {
       this.setState({showModal: !this.state.showModal});
@@ -268,12 +268,12 @@ class App extends React.Component {
   // react-bootstrap toggle for adding a challenge question
   toggleAddQuestionModal() {
     this.setState({showAddQuestionModal: !this.state.showAddQuestionModal});
-    console.log('toggleQuestion called', this.state.showAddQuestionModal);
+    // console.log('toggleQuestion called', this.state.showAddQuestionModal);
   }
 
   handleQuestionSubmit(event) {
     event.preventDefault();
-    console.log('Question submitted', event.target);
+    // console.log('Question submitted', event.target);
   }
 
   handleAlertDismiss() {
