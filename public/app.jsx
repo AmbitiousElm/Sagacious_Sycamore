@@ -167,7 +167,7 @@ class App extends React.Component {
           love:'../assets/love1.png',
           code:'../assets/code2.png',
           question:'../assets/question.png'
-        }});      
+        }});
     } else if (command === 'playing') {
       this.setState({cmdImg: {
           food:'../assets/food1.png',
@@ -192,7 +192,7 @@ class App extends React.Component {
   }
   // method to call when submitting answers
   submitAnswer() {
-    // console.log('Answer submitted', data.target.value);
+    console.log('Answer submitted', data.target.value);
     // var answer = this.pickAnswer();
     var that = this;
     var option = {
@@ -200,7 +200,7 @@ class App extends React.Component {
       answer: this.state.answer,
       user: this.state.user
     }
-    // console.log('option', option);
+    console.log('option', option);
     $.ajax({
       method: 'POST',
       url: '/api/answer',
@@ -222,7 +222,7 @@ class App extends React.Component {
     this.setState({
       answer: e.target.value
     });
-    // console.log(e.target.value);
+    console.log(e.target.value);
   }
   // queues the next question
   getQuestion() {
@@ -293,7 +293,7 @@ class App extends React.Component {
     return (
       <div className='app container'>
         <div className='row'>
-          <div className='col-lg-12 hidden-xs'>
+          <div className='col-lg-12'>
             <NavigationBar user={this.state.user} />
           </div>
         </div>
