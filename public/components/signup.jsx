@@ -14,7 +14,7 @@ class SignUp extends React.Component {
     var that = this;
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:3000/signup',
+      url: '/signup',
       header: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: {username: that.state.username, password: that.state.password}
     })

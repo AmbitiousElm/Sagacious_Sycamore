@@ -93,7 +93,7 @@ class App extends React.Component {
     var that = this;
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:3000/api/pet',
+      url: '/api/pet',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: {status: status, user: this.state.user}
     })
@@ -122,7 +122,7 @@ class App extends React.Component {
     var that = this;
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:3000/api/newPet',
+      url: '/api/newPet',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       // so far saving it to window was the only thing working, need to find a better alternative
       data: {name: this.state.newPetName, user: this.state.user}

@@ -9,7 +9,7 @@ class NavigationBar extends React.Component {
     var that = this;
     $.ajax({
       method: 'GET',
-      url: 'http://localhost:3000/logout',
+      url: '/logout',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     })
     .success(function() {

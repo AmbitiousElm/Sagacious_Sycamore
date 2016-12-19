@@ -18,7 +18,7 @@ class Login extends React.Component {
     var that = this;
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:3000/login',
+      url: '/login',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: {username: that.state.username, password: that.state.password}
     }).success(function(data) {

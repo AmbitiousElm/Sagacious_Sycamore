@@ -18,7 +18,7 @@ class Login extends React.Component {
     e.preventDefault();
     console.log(this.state)
     var that = this;
-    fetch('http://localhost:3000/login', {
+    fetch('/login', {
       method: 'POST',
       data: that.state
     }).then(function(response) {
