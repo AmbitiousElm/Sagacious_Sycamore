@@ -32,7 +32,7 @@ class App extends React.Component {
       logs: []
     }
 
-
+    this.logoutHandler = this.logoutHandler.bind(this);
     // this.handleAlertDismiss.bind(this);
     var that = this;
     setInterval(function() {
@@ -57,6 +57,21 @@ class App extends React.Component {
     this.getCurrent();
     this.getLog();
     // this.getQuestion();
+  }
+
+  logoutHandler() {
+    var that = this;
+    $.ajax({
+      method: 'GET',
+      url: '/logout',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    })
+    .success(function() {
+        browserHistory.currentUser = null;
+        browserHistory.push({
+          pathname: '/login'
+        })
+    })
   }
 
   getCurrent() {
@@ -313,6 +328,8 @@ class App extends React.Component {
             <PetCommand cmdImg={this.state.cmdImg} executeCommand={this.executeCommand.bind(this)} />
           </div>) : <Restart showNameInput={this.showNameInput.bind(this)} showNewName={this.state.showNewName} user={this.state.user} getInput={this.getInput.bind(this)} newPet={this.newPet.bind(this)}></Restart>
         }</div>
+        <hr />
+        <div className="text-center" onClick={this.logoutHandler}>Logout</div>
         <div className='row'>
           <div className='col-lg-12'>
             <ModalInstance showModal={this.state.showModal} pickAnswer={this.pickAnswer.bind(this)} toggleModalClick={this.toggleModal.bind(this)} submitAnswer={this.submitAnswer.bind(this)} question={this.state.question}></ModalInstance>
