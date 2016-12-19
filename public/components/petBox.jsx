@@ -17,64 +17,55 @@ var Petbox = (props) => {
     healthBar: { width: props.pet.health/1000 * 100 + '%' },
     levelBar:  { width: props.pet.level/3 * 100 + '%' },
     experienceBar: { width: props.pet.experience/5 * 100 + '%' }
+
   }
 
   return (
   <div className='petView container'>
     <div className='row'>
-      <div className='pet-image-container col-md-6'>
-        <img className="pet-image img-responsive" src={props.pet.img}></img>
-        <div>
-          <StatusMessage logs={props.pet.logs} />
-        </div>
+      <div className='pet-image-container col-sm-6'>
+        <img className="pet-image img-responsive center-block" src={props.pet.img}></img>
       </div>
-      <div className='stats col-md-6'>
+      <div className='stats col-sm-6'>
         <div className='stats container'>
-          <h1>Stats</h1>
-            <div className='row'>
+            {/* <div className='row'>
               <b>Name:</b> {props.pet.name}
             </div>
             <div className='row'>
               <b>User:</b> {props.pet.user}
-            </div>
+            </div> */}
             <div className='row'>
-              <b>Mood:</b> {props.pet.mood}
-            </div>
-            <div className='row'>
-              <b>Phys:</b> {props.pet.phys}
-            </div>
-            <div className='row'>
-              <b>Health:</b>
+              <b>Health: {props.pet.phys}</b>
               <div className='progress'>
-                  <div className="progress-bar" role="progressbar" style={bars['healthBar']}>
+                  <div className="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" style={bars['healthBar']}>
                   </div>
               </div>
             </div>
             <div className='row'>
-              <b>Love:</b>
+              <b>Mood: {props.pet.mood}</b>
               <div className='progress'>
-                  <div className="progress-bar" role="progressbar" style={bars['loveBar']}>
+                  <div className="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" style={bars['loveBar']}>
                   </div>
               </div>
             </div>
             <div className='row'>
               <b>Energy:</b>
               <div className='progress'>
-                  <div className="progress-bar" role="progressbar" style={bars['energyBar']}>
+                  <div className="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" style={bars['energyBar']}>
                   </div>
               </div>
             </div>
             <div className='row'>
               <b>Level:</b> {props.pet.level} / 3
               <div className='progress'>
-                  <div className="progress-bar" role="progressbar" style={bars['levelBar']}>
+                  <div className="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" style={bars['levelBar']}>
                   </div>
               </div>
             </div>
             <div className='row'>
               <b>Experience:</b>
               <div className='progress'>
-                  <div className="progress-bar" role="progressbar" style={bars['experienceBar']}>
+                  <div className="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" style={bars['experienceBar']}>
                   </div>
               </div>
             </div>

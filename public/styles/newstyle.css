@@ -1,14 +1,14 @@
-.row li {
-  width: 33.3%;
-  float: left;
+.progress {
+  width: 40%;
+  margin-bottom: 15px;
 }
 
-img {
-  border: 0 none;
-  display: inline-block;
-  height: auto;
-  max-width: 100%;
-  vertical-align: middle;
+
+@media only screen and (max-width: 800px) {
+  .progress {
+    width: 100%;
+    margin-bottom: 0;
+  }
 }
 
 .command {

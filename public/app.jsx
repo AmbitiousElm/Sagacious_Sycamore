@@ -293,20 +293,21 @@ class App extends React.Component {
     return (
       <div className='app container'>
         <div className='row'>
-          <div className='col-lg-12'>
+          <div className='col-lg-12 hidden-xs'>
             <NavigationBar user={this.state.user} />
           </div>
         </div>
         <div className='row'>
-          <div className='col-lg-12'>
-            <h3>{this.state.name} is currently <span className='status'>{this.state.status}</span>!</h3>
+          <div className='col-lg-12 center'>
+            <h4 className="text-center">{this.state.name} is currently <span className='status'>{this.state.status}</span>!</h4>
             <Alert bsStyle={bsStyle} style={style} onDismiss={this.handleAlertDismiss.bind(this)}>
               {answerMessage}
             </Alert>
           </div>
         </div>
         <Petbox pet={this.state}/>
-        <h3>Actions</h3>
+        <br />
+        {/* <h3>Actions</h3> */}
         <div className='PetCommand'>{
           this.state.status !== 'dead' ? (<div>
             <PetCommand cmdImg={this.state.cmdImg} executeCommand={this.executeCommand.bind(this)} />
