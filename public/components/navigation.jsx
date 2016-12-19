@@ -2,23 +2,23 @@ class NavigationBar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.logoutHandler = this.logoutHandler.bind(this);
+    // this.logoutHandler = this.logoutHandler.bind(this);
   }
 
-  logoutHandler() {
-    var that = this;
-    $.ajax({
-      method: 'GET',
-      url: '/logout',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    })
-    .success(function() {
-        browserHistory.currentUser = null;
-        browserHistory.push({
-          pathname: '/login'
-        })
-    })
-  }
+  // logoutHandler() {
+  //   var that = this;
+  //   $.ajax({
+  //     method: 'GET',
+  //     url: '/logout',
+  //     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+  //   })
+  //   .success(function() {
+  //       browserHistory.currentUser = null;
+  //       browserHistory.push({
+  //         pathname: '/login'
+  //       })
+  //   })
+  // }
 
   render() {
     return (
@@ -27,7 +27,7 @@ class NavigationBar extends React.Component {
           <div className="container-fluid">
             <span className="navbar-left">Welcome to HRGotchi, {this.props.user}!</span>
             <br />
-            <span className="navbar-right" onClick={this.logoutHandler}>Logout</span>
+            {/* <span className="navbar-right" onClick={this.logoutHandler}>Logout</span> */}
           </div>
         </nav>
       </div>
