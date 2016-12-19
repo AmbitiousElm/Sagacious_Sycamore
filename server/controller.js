@@ -1,4 +1,4 @@
-var db = require('../data/database.js');
+  var db = require('../data/database.js');
 var Pet = db.Pet;
 var User = db.User;
 var Log = db.Log;
@@ -9,7 +9,7 @@ var moment = require('moment');
 /********** Image Assets **********/
 var lvl1 = {
   coding: "http://i.imgur.com/KTNujjY.gif",
-  sleeping: "http://i.imgur.com/PujjsmB.gif",
+  sleeping: 'https://media.giphy.com/media/7ZWft74Fqo7aU/giphy.gif', // "http://i.imgur.com/PujjsmB.gif",
   playing: "http://i.imgur.com/T99KqDs.gif",
   eating: "http://i.imgur.com/W8UQN1M.gif"
 };
@@ -34,36 +34,48 @@ var urls = {
   lvl3: lvl3
 };
 
+var randomName = function() {
+  // produces a random pet name.
+  var first = ['Bo', 'Di', 'Fru', 'Ga', 'Mo', 'Dee', 'Soo', 'Joo', 'Mi', 'La'];
+  var middle = ['dug', 'lon', 'fin', 'set', 'bug', 'rud', 'din'];
+  var last = ['ing', 'ly', 'na', 'mu', 'apu', 'arino', ' the Powerful', 'the Lamb'];
+
+  var name = first[~~(Math.random() * first.length)] + middle[~~(Math.random() * middle.length)];
+  name += last[~~(Math.random() * last.length)];
+
+  return name;
+}
+
 module.exports = {
   /********** Pet Functions **********/
   get: function(req, res, next) {
     Pet.findOne({where: {user: req.session.user}})
       .then(function(query) {
         if (query) {
+          // console.log('GET:', req.session.user);
           var pet = query.dataValues;
           res.statusCode = 200;
-          console.log('found Pet, current User', req.session.user);
           res.json(pet);
-        } else {
+        } else if (req.session.user){
           Pet.create({ user: req.session.user, name: 'newPetOf' + req.session.user})
           .then(function(pet) {
             console.log('Created new pet.', 'Name: ', pet.dataValues.name, 'User: ', pet.dataValues.user);
-            console.log('current User', req.session.user);
             res.send(pet.dataValues);
-          });
+          });            
+        } else {
+          res.end();
         }
       })
   },
+
   post: function(req, res, next) {
     Pet.findOne({where: {user: req.session.user}})
       .then(function(pet) {
         if (pet) {
           var newStatus = req.body.status;
           pet.status = newStatus;
-          console.log('url', urls['lvl'+ pet.level][newStatus]);
           pet.img = urls['lvl'+ pet.level][newStatus];
           pet.save().then(function(data) {
-            console.log('updated status');
             res.statusCode = 201;
             res.end(JSON.stringify(data.dataValues));
           });
@@ -75,7 +87,6 @@ module.exports = {
   new: function(req, res, next) {
     var name = req.body.name;
     var user = req.session.user;
-    console.log('new', user);
     Pet.destroy({ where: {user: user}});
     Log.destroy({ where: {user: user} });
     Pet.create({ user: user, name: name})
@@ -91,7 +102,6 @@ module.exports = {
         // Pull a random question
         var randomChoice = ~~(Math.random() * questions.length);
         var question = questions[randomChoice];
-        console.log('question', question.question);
         question.answer = 0; // Hide the answer until user submites answer
         res.statusCode = 200;
         res.send(question);
@@ -118,15 +128,12 @@ module.exports = {
     var answer = req.body.answer;
     Question.findOne({where: {id: id}})
       .then(function(question) {
-        // console.log('obj', question);
-        // console.log('db',question.question, question.answer);
         var obj = {};
         if (question.answer == answer) {
           obj.correct = true;
         } else {
           obj.correct = false;
         }
-        // console.log('sending obj', obj);
         res.send(obj);
       });
 
@@ -154,12 +161,10 @@ module.exports = {
       if(entry.length === 0){
         Log.create({name: name, action: action, user: user})
         .then(function(log) {
-          console.log('Created new log.');
         });
       } else if(entry[0].dataValues.action !== 'dead'){
         Log.create({name: name, action: action, user: user})
         .then(function(log) {
-          console.log('Created new log.');
         });
       }
     })
@@ -178,7 +183,7 @@ module.exports = {
               console.log('error')
               throw err;
             } else if (match) {
-              console.log('Login successful', req.session);
+              console.log('Login successful');
               req.session.regenerate(function() {
                 req.session.user = user.username;
                 res.send(req.session);
@@ -214,7 +219,7 @@ module.exports = {
                   throw err;
                 } else {
                   User.create({username: username, password: hash}).then(function(user) {
-                    console.log('Saved user.');
+                    // console.log('Saved user.');
                     user = user.dataValues;
                     req.session.regenerate(function() {
                       req.session.user = user.username;
@@ -234,7 +239,7 @@ module.exports = {
   /********** Authentication Middleware **********/
   checkUser: function(req, res, next) {
     if (!req.session.user) {
-      console.log('Must login.');
+      // console.log('Must login.');
       res.redirect('/login');
     } else {
       next();
@@ -246,10 +251,10 @@ module.exports = {
 
   // returns all monsters in an array
   getPets: function(req, res, next) {
-    console.log('get pets is running');
+    // console.log('get pets is running');
     Pet.findAll({})
       .then(function(pets) {
-        console.log('This is what was found:', pets);
+        // console.log('This is what was found:', pets);
         res.statusCode = 200;
         res.send(pets);
       });

@@ -1,6 +1,7 @@
 body {
 	margin-left: auto;
 	margin-right: auto;
+	cursor: url('other/img/gude.png'), default;
 }
 
 img {
@@ -19,6 +20,10 @@ label {
 
 .navbar-brand {
 	font-size: 20px;
+}
+
+.navigation {
+	background-color: #0080FF;
 }
 
 
@@ -101,6 +106,10 @@ label {
 	width:150px;
 }
 
+.progress-bar {
+	background-color: #0080FF;
+}
+
 /* Command button styling */
 .command {
   text-decoration: none;
@@ -113,11 +122,11 @@ label {
   border-left: 1px solid #CCCCCC ;
   border-radius: 5px;
   display: inline-block;
-  height: 55px;
+  height: 70px;
   padding: 5px;
   margin: 5px;
   vertical-align: right;
-  width: 55px;
+  width: 70px;
 }
 
 .command:hover {
